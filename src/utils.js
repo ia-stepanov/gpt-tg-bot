@@ -1,5 +1,6 @@
 import { unlink } from 'fs/promises';
 
+// Функция для удаления файла по заданному пути
 export async function removeFile(path) {
   try {
     await unlink(path);

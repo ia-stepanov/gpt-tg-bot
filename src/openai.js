@@ -10,12 +10,14 @@ class OpenAI {
   };
 
   constructor(apiKey) {
+    // Инициализация конфигурации OpenAI с переданным ключом
     const configuration = new Configuration({
       apiKey,
     });
     this.openai = new OpenAIApi(configuration);
   }
 
+  // Метод для общения с моделью GPT-3.5
   async chat(messages) {
     try {
       const response = await this.openai.createChatCompletion({
@@ -28,6 +30,7 @@ class OpenAI {
     }
   }
 
+  // Метод для расшифровки аудиофайла
   async transcription(filepath) {
     try {
       const response = await this.openai.createTranscription(
@@ -41,4 +44,5 @@ class OpenAI {
   }
 }
 
+// Создание экземпляра класса с переданным ключом и экспорт
 export const openai = new OpenAI(config.get('OPENAI_KEY'));

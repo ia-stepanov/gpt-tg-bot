@@ -6,13 +6,16 @@ import { dirname, resolve } from 'path';
 import { fileURLToPath } from 'url';
 import { removeFile } from './utils.js';
 
+// Получение текущей директории
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 class OggConverter {
   constructor() {
+    // Установка пути для ffmpeg
     ffmpeg.setFfmpegPath(installer.path);
   }
 
+  // Метод для конвертирования ogg-файла в mp3-файл
   toMp3(input, output) {
     try {
       const outputPath = resolve(dirname(input), `${output}.mp3`);
@@ -32,6 +35,7 @@ class OggConverter {
     }
   }
 
+  // Метод для создания ogg-файла из ссылки на аудиофайл
   async create(url, filename) {
     try {
       const oggPath = resolve(__dirname, '../voices', `${filename}.ogg`);
@@ -51,4 +55,5 @@ class OggConverter {
   }
 }
 
+// Создание экземпляра класса и экспорт
 export const ogg = new OggConverter();

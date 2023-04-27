@@ -1,3 +1,4 @@
+// Импортирование необходимых модулей и файлов
 import { Telegraf, session } from 'telegraf';
 import { message } from 'telegraf/filters';
 import { code } from 'telegraf/format';
@@ -5,26 +6,33 @@ import config from 'config';
 import { ogg } from './ogg.js';
 import { openai } from './openai.js';
 
+// Вывод переменной среды TEST_ENV
 console.log(config.get('TEST_ENV'));
 
+// Создание начальной сессии
 const INITIAL_SESSION = {
   messages: [],
 };
 
+// Создание экземпляра бота Telegraf с полученным токеном
 const bot = new Telegraf(config.get('TELEGRAM_TOKEN'));
 
+// Использование сессии для бота
 bot.use(session());
 
+// Обработка команды /new, создание новой сессии
 bot.command('new', async (ctx) => {
   ctx.session = INITIAL_SESSION;
   await ctx.reply('Жду вашего голосового или текстового сообщения');
 });
 
+// Обработка команды /start, создание новой сессии
 bot.command('start', async (ctx) => {
   ctx.session = INITIAL_SESSION;
   await ctx.reply('Жду вашего голосового или текстового сообщения');
 });
 
+// Обработка голосовых сообщений
 bot.on(message('voice'), async (ctx) => {
   ctx.session ??= INITIAL_SESSION;
   try {
@@ -55,6 +63,7 @@ bot.on(message('voice'), async (ctx) => {
   }
 });
 
+// Обработка текстовых сообщений
 bot.on(message('text'), async (ctx) => {
   ctx.session ??= INITIAL_SESSION;
   try {
@@ -75,7 +84,9 @@ bot.on(message('text'), async (ctx) => {
   }
 });
 
+// Запуск бота
 bot.launch();
 
+// Обработка сигналов завершения работы
 process.once('SIGINT', () => bot.stop('SIGINT'));
 process.once('SIGERM', () => bot.stop('SIGERM'));
