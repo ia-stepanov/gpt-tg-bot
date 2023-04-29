@@ -49,7 +49,7 @@ GPT Telegram Bot — это Telegram-бот, который умеет прин
 
 ## Доп. информация:
 - [Как запустить ChatGPT из России в 5 шагов](https://t.me/whackdoor/2787);
-- [Как получить токен от Telegram-бота](https://youtu.be/-6ufFPvp6CY?t=468);
+- [Как получить токен от Telegram-бота](https://youtu.be/-6ufFPvp6CY?t=468);
 - [Как получить токен от OpenAI](https://youtu.be/-6ufFPvp6CY?t=2744);
 - [Как установить Docker на VPS/VDS с Ubuntu](https://selectel.ru/blog/what-is-docker/#vmashine).
 
